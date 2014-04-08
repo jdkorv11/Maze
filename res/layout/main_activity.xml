@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/path">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/high_scores"
+            android:id="@+id/main_high_scores"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:clickable="true"
+            android:onClick="onHighScoresSelect"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/start_game"
+            android:id="@+id/main_start_game"
+            android:layout_above="@+id/main_high_scores"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true"
+            android:clickable="true"
+            android:onClick="onStartGameSelect"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/options"
+            android:id="@+id/main_options"
+            android:layout_below="@+id/main_high_scores"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
+            android:clickable="true"
+            android:onClick="onOptionsSelect"/>
+</RelativeLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="level_complete_options">
+        <item>Next Level</item>
+        <item>Pick Level</item>
+        <item>Main Menu</item>
+        <item>High Scores</item>
+    </string-array>
+</resources>

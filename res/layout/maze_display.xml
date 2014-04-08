@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MazeActivity"
+    android:background="@drawable/path">
+
+     <TextView
+        android:id="@+id/maze_activity_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+     
+    <GridLayout
+        android:id="@+id/mazeHolder"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/maze_activity_score"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:useDefaultMargins="false" >
+    </GridLayout>
+
+    <Button
+        android:id="@+id/downBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/down_btn"
+        android:onClick="move" />
+
+    <Button
+        android:id="@+id/rightBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/downBtn"
+        android:layout_alignBottom="@+id/downBtn"
+        android:layout_toRightOf="@+id/downBtn"
+        android:background="@drawable/right_btn"
+        android:onClick="move" />
+
+    <Button
+        android:id="@+id/leftBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignBaseline="@+id/downBtn"
+        android:layout_alignBottom="@+id/downBtn"
+        android:layout_toLeftOf="@+id/downBtn"
+        android:background="@drawable/left_btn"
+        android:onClick="move" />
+
+    <Button
+        android:id="@+id/upBtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/downBtn"
+        android:layout_alignLeft="@+id/downBtn"
+        android:background="@drawable/up_btn"
+        android:onClick="move" />
+
+   
+
+</RelativeLayout>

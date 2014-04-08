@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onLevelSelect"
+        xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/preview"
+            android:padding="@dimen/activity_horizontal_margin"/>
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/level_select_item_level_number"
+            android:layout_centerInParent="true"/>
+
+</RelativeLayout>
