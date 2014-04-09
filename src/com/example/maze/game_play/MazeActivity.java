@@ -110,20 +110,24 @@ public class MazeActivity extends Activity {
         int score = calculateScore();
         sessionScores.submitScore(level, score);
 
+        int totalScore = sessionScores.getTotalScore();
         // if there is a new high score, bring the score submission dialog up
         // else bring up the normal end of level dialog
-        if (hsData.isHighScore(sessionScores.getTotalScore())) {
-            submitPlayerScore(score);
+        if (hsData.isHighScore(totalScore)) {
+            submitPlayerScore(totalScore, score);
         } else {
-            displayEndOfLevelOptions(score);
+            displayEndOfLevelOptions(totalScore, score);
         }
     }
 
     //TODO make dialog display better (fix score and title display)
-    private void submitPlayerScore(final int score) {
+    private void submitPlayerScore(final int totalScore, int score) {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.score_submit_dialog);
-        dialog.setTitle(String.valueOf(score));
+        dialog.setTitle("New High Score!");
+
+        TextView tv = (TextView) dialog.findViewById(R.id.submit_dialog_score);
+        tv.setText("Total Score: " + totalScore + "\nLevel Score: " + score);
 
         Button button = (Button) dialog.findViewById(R.id.submit_score_button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -136,7 +140,7 @@ public class MazeActivity extends Activity {
                 } else {
                     player = et.getHint().toString();
                 }
-                hsData.submitScore(new MazeScore(player, score, hsData.getRegion()));
+                hsData.submitScore(new MazeScore(player, totalScore, hsData.getRegion()));
                 dialog.dismiss();
                 startActivity(new Intent(MazeActivity.this, HighScoresActivity.class));
             }
@@ -144,7 +148,7 @@ public class MazeActivity extends Activity {
         dialog.show();
     }
 
-    private void displayEndOfLevelOptions(int score) {
+    private void displayEndOfLevelOptions(int totalScore, int score) {
         // alert dialog to contain end of game options
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Level Completed\nScore: " + score)

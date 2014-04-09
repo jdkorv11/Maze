@@ -57,4 +57,22 @@ public class MazeScore {
         this.score = score;
         this.region = region;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        MazeScore score1;
+        try {
+            score1 = (MazeScore) obj;
+        } catch (Exception e) {
+            return false;
+        }
+        if (this.getScore() == score1.getScore() &&
+                this.getName() == score1.getName() &&
+                this.getRegion() == score1.getRegion()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
