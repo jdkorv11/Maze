@@ -2,6 +2,7 @@ package com.example.maze.high_scores;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import com.example.maze.MainActivity;
 import com.example.maze.R;
+import com.example.maze.level_select.LevelSelectActivity;
 
 import java.util.List;
 
@@ -35,6 +38,14 @@ public class HighScoresActivity extends Activity {
         CustomArrayAdapter adapter = new CustomArrayAdapter(this, R.layout.high_score_list_item,
                 hsData.getHighScores());
         lv.setAdapter(adapter);
+    }
+
+    public void toMainMenu(View v) {
+        startActivity(new Intent(this, MainActivity.class));
+    }
+
+    public void toLevelSelect(View v) {
+        startActivity(new Intent(this, LevelSelectActivity.class));
     }
 
     /**

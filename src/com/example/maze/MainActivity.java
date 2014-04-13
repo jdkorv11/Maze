@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import com.example.maze.high_scores.HighScoresActivity;
 import com.example.maze.level_select.LevelSelectActivity;
 
 /**
@@ -24,6 +25,7 @@ public class MainActivity extends Activity {
 
     public void onHighScoresSelect(View view) {
         Log.v(TAG, "onHighScoresSelect");
+        startActivity(new Intent(this, HighScoresActivity.class));
     }
 
     public void onOptionsSelect(View view) {

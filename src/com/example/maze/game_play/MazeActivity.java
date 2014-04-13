@@ -114,10 +114,35 @@ public class MazeActivity extends Activity {
         // if there is a new high score, bring the score submission dialog up
         // else bring up the normal end of level dialog
         if (hsData.isHighScore(totalScore)) {
-            submitPlayerScore(totalScore, score);
+            offerSubmitScore(totalScore, score);
         } else {
             displayEndOfLevelOptions(totalScore, score);
         }
+    }
+
+    private void offerSubmitScore(final int totalScore, final int score) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("You got a new High Score!");
+        builder.setMessage("Level Score: " + score +
+                "\nTotal Score: " + totalScore +
+                "\n\nEnd your game and submit score?");
+        builder.setNegativeButton("Keep Playing", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                displayEndOfLevelOptions(totalScore, score);
+            }
+        });
+        builder.setPositiveButton("Submit Score", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                sessionScores.reset();
+                submitPlayerScore(totalScore, score);
+            }
+        });
+        builder.create();
+        builder.show();
     }
 
     //TODO make dialog display better (fix score and title display)
