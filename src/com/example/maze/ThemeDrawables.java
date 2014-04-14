@@ -10,9 +10,9 @@ import java.util.HashMap;
 public class ThemeDrawables {
 
     public final static int INDUSTRIAL_THEME = 0;
-    public final static int OTHER_THEME = 1;
+    public final static int RETRO_THEME = 1;
 
-    private static int currentTheme;
+    private static int currentTheme = 1;
     private final static String FINISH = "finish";
     private final static String START = "start";
     private final static String WALL = "wall";
@@ -40,20 +40,20 @@ public class ThemeDrawables {
         industrial_map.put(BACKGROUND, R.drawable.industrial_path);
     }
 
-    private static HashMap<String, Integer> other_map;
+    private static HashMap<String, Integer> retro_map;
 
     static {
-        other_map = new HashMap<String, Integer>();
-        other_map.put(FINISH, R.drawable.industrial_finish);
-        other_map.put(START, R.drawable.industrial_start);
-        other_map.put(WALL, R.drawable.industrial_wall);
-        other_map.put(PATH, R.drawable.industrial_path);
-        other_map.put(NORTH, R.drawable.industrial_guy_north);
-        other_map.put(EAST, R.drawable.industrial_guy_east);
-        other_map.put(SOUTH, R.drawable.industrial_guy_south);
-        other_map.put(WEST, R.drawable.industrial_guy_west);
-        other_map.put(PREVIEW, R.drawable.industrial_preview);
-        other_map.put(BACKGROUND, R.drawable.industrial_path);
+        retro_map = new HashMap<String, Integer>();
+        retro_map.put(FINISH, R.drawable.retro_finish);
+        retro_map.put(START, R.drawable.retro_path);
+        retro_map.put(WALL, R.drawable.retro_wall);
+        retro_map.put(PATH, R.drawable.retro_path);
+        retro_map.put(NORTH, R.drawable.retro_guy_north);
+        retro_map.put(EAST, R.drawable.retro_guy_east);
+        retro_map.put(SOUTH, R.drawable.retro_guy_south);
+        retro_map.put(WEST, R.drawable.retro_guy_west);
+        retro_map.put(PREVIEW, R.drawable.retro_preview);
+        retro_map.put(BACKGROUND, R.drawable.retro_path);
     }
 
     private static HashMap<Integer, HashMap<String, Integer>> themeMap;
@@ -61,46 +61,46 @@ public class ThemeDrawables {
     static {
         themeMap = new HashMap<Integer, HashMap<String, Integer>>();
         themeMap.put(INDUSTRIAL_THEME, industrial_map);
-        themeMap.put(OTHER_THEME, other_map);
+        themeMap.put(RETRO_THEME, retro_map);
     }
 
-    public int getFinish() {
+    public static int getFinish() {
         return themeMap.get(currentTheme).get(FINISH);
     }
 
-    public int getStart() {
+    public static int getStart() {
         return themeMap.get(currentTheme).get(START);
     }
 
-    public int getWall() {
+    public static int getWall() {
         return themeMap.get(currentTheme).get(WALL);
     }
 
-    public int getPath() {
+    public static int getPath() {
         return themeMap.get(currentTheme).get(PATH);
     }
 
-    public int getGuyNorth() {
+    public static int getGuyNorth() {
         return themeMap.get(currentTheme).get(NORTH);
     }
 
-    public int getGuyEast() {
+    public static int getGuyEast() {
         return themeMap.get(currentTheme).get(EAST);
     }
 
-    public int getGuySouth() {
+    public static int getGuySouth() {
         return themeMap.get(currentTheme).get(SOUTH);
     }
 
-    public int getGuyWest() {
+    public static int getGuyWest() {
         return themeMap.get(currentTheme).get(WEST);
     }
 
-    public int getPreview() {
+    public static int getPreview() {
         return themeMap.get(currentTheme).get(PREVIEW);
     }
 
-    public int getBackground() {
+    public static int getBackground() {
         return themeMap.get(currentTheme).get(BACKGROUND);
     }
 

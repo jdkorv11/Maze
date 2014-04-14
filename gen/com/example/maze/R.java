@@ -28,20 +28,20 @@ public final class R {
         public static final int activity_vertical_margin=0x7f060001;
     }
     public static final class drawable {
-        public static final int down_btn=0x7f020000;
+        public static final int btn_down =0x7f020000;
         public static final int end_screen=0x7f020001;
-        public static final int finish=0x7f020002;
-        public static final int guy_east=0x7f020003;
-        public static final int guy_north=0x7f020004;
-        public static final int guy_south=0x7f020005;
-        public static final int guy_west=0x7f020006;
-        public static final int left_btn=0x7f020007;
-        public static final int path=0x7f020008;
-        public static final int preview=0x7f020009;
-        public static final int right_btn=0x7f02000a;
-        public static final int start=0x7f02000b;
-        public static final int up_btn=0x7f02000c;
-        public static final int wall=0x7f02000d;
+        public static final int industrial_finish =0x7f020002;
+        public static final int industrial_guy_east =0x7f020003;
+        public static final int industrial_guy_north =0x7f020004;
+        public static final int industrial_guy_south =0x7f020005;
+        public static final int industrial_guy_west =0x7f020006;
+        public static final int btn_left =0x7f020007;
+        public static final int industrial_path =0x7f020008;
+        public static final int industrial_preview =0x7f020009;
+        public static final int btn_right =0x7f02000a;
+        public static final int industrial_start =0x7f02000b;
+        public static final int btn_up =0x7f02000c;
+        public static final int industrial_wall =0x7f02000d;
     }
     public static final class id {
         public static final int action_settings=0x7f0a0016;

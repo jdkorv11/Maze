@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RelativeLayout;
 import com.example.maze.high_scores.HighScoresActivity;
 import com.example.maze.level_select.LevelSelectActivity;
 import com.example.maze.options.OptionsActivity;
@@ -16,7 +17,9 @@ public class MainActivity extends Activity {
     private static final String TAG = "Main Activity";
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
+        RelativeLayout layout = (RelativeLayout) getLayoutInflater().inflate(R.layout.main_activity, null);
+        layout.setBackgroundResource(ThemeDrawables.getBackground());
+        setContentView(layout);
     }
 
     public void onStartGameSelect(View view) {

@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MazeActivity"
-    android:background="@drawable/path">
+    android:background="@drawable/industrial_path">
 
      <TextView
         android:id="@+id/maze_activity_score"
@@ -34,7 +34,7 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/down_btn"
+        android:background="@drawable/btn_down"
         android:onClick="move" />
 
     <Button
@@ -44,7 +44,7 @@
         android:layout_alignBaseline="@+id/downBtn"
         android:layout_alignBottom="@+id/downBtn"
         android:layout_toRightOf="@+id/downBtn"
-        android:background="@drawable/right_btn"
+        android:background="@drawable/btn_right"
         android:onClick="move" />
 
     <Button
@@ -54,7 +54,7 @@
         android:layout_alignBaseline="@+id/downBtn"
         android:layout_alignBottom="@+id/downBtn"
         android:layout_toLeftOf="@+id/downBtn"
-        android:background="@drawable/left_btn"
+        android:background="@drawable/btn_left"
         android:onClick="move" />
 
     <Button
@@ -63,7 +63,7 @@
         android:layout_height="50dp"
         android:layout_above="@+id/downBtn"
         android:layout_alignLeft="@+id/downBtn"
-        android:background="@drawable/up_btn"
+        android:background="@drawable/btn_up"
         android:onClick="move" />
 
    

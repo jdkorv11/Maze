@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.example.maze.MainActivity;
 import com.example.maze.R;
+import com.example.maze.ThemeDrawables;
 import com.example.maze.level_select.LevelSelectActivity;
 
 import java.util.List;
@@ -30,12 +32,15 @@ public class HighScoresActivity extends Activity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.high_scores);
+        FrameLayout layout = (FrameLayout) getLayoutInflater().inflate(R.layout.high_scores, null);
+        layout.setBackgroundResource(ThemeDrawables.getBackground());
+        setContentView(layout);
 
         hsData = HSData.instance();
 
         ListView lv = (ListView) findViewById(R.id.highScoresList);
-        CustomArrayAdapter adapter = new CustomArrayAdapter(this, R.layout.high_score_list_item,
+        lv.setBackgroundResource(ThemeDrawables.getWall());
+        HighScoresArrayAdapter adapter = new HighScoresArrayAdapter(this, R.layout.high_score_list_item,
                 hsData.getHighScores());
         lv.setAdapter(adapter);
     }
@@ -53,9 +58,9 @@ public class HighScoresActivity extends Activity {
      *
      * note: the ListView must use R.layout.high_score_list_item for item layouts
      */
-    private class CustomArrayAdapter extends ArrayAdapter<MazeScore> {
+    private class HighScoresArrayAdapter extends ArrayAdapter<MazeScore> {
 
-        public CustomArrayAdapter(Context context, int resource, List<MazeScore> objects) {
+        public HighScoresArrayAdapter(Context context, int resource, List<MazeScore> objects) {
             super(context, resource, objects);
         }
 

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.*;
 import com.example.maze.MainActivity;
 import com.example.maze.R;
+import com.example.maze.ThemeDrawables;
 import com.example.maze.high_scores.HSData;
 import com.example.maze.high_scores.HighScoresActivity;
 import com.example.maze.high_scores.MazeScore;
@@ -44,7 +45,10 @@ public class MazeActivity extends Activity {
         sessionScores = SessionHighScores.instance();
         hsData = HSData.instance();
 
-        setContentView(R.layout.maze_display);
+        RelativeLayout layout = (RelativeLayout) getLayoutInflater().inflate(R.layout.maze_display, null);
+        setContentView(layout);
+        layout.setBackgroundResource(ThemeDrawables.getBackground());
+
 
         mazeDisplay = (ViewGroup) findViewById(R.id.mazeHolder);
         ((GridLayout) mazeDisplay).setUseDefaultMargins(false);
@@ -59,16 +63,16 @@ public class MazeActivity extends Activity {
                 // switch to filter direction of step
                 switch (direction) {
                     case MovementController.WEST:
-                        guyId = R.drawable.guy_west;
+                        guyId = ThemeDrawables.getGuyWest();
                         break;
                     case MovementController.NORTH:
-                        guyId = R.drawable.guy_north;
+                        guyId = ThemeDrawables.getGuyNorth();
                         break;
                     case MovementController.EAST:
-                        guyId = R.drawable.guy_east;
+                        guyId = ThemeDrawables.getGuyEast();
                         break;
                     case MovementController.SOUTH:
-                        guyId = R.drawable.guy_south;
+                        guyId = ThemeDrawables.getGuySouth();
                         break;
                     default:
                         Log.v("onStep", "invalid direction");
@@ -101,11 +105,9 @@ public class MazeActivity extends Activity {
 
         currentLocation = maze.getStart();
 
-        displayMaze(R.drawable.guy_south);
+        displayMaze(ThemeDrawables.getGuySouth());
     }
 
-    // TODO create TOAST prompt of the complete score, options, and post the score to the
-    // HighScoresActivity to see if it is a high score
     private void completeLevel() {
         int score = calculateScore();
         sessionScores.submitScore(level, score);
@@ -145,7 +147,6 @@ public class MazeActivity extends Activity {
         builder.show();
     }
 
-    //TODO make dialog display better (fix score and title display)
     private void submitPlayerScore(final int totalScore, int score) {
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.score_submit_dialog);
@@ -187,10 +188,14 @@ public class MazeActivity extends Activity {
                         final int highScores = 3;
                         switch (which) {
                             case (nextLevel):
+                                if (Integer.valueOf(level) < LevelSelectActivity.getNumOfLevels()) {
                                 int gotoLevel = Integer.valueOf(level) + 1;
                                 Intent intent = new Intent(getBaseContext(), MazeActivity.class);
                                 intent.putExtra(MazeActivity.LEVEL, String.valueOf(gotoLevel));
-                                startActivity(intent);
+                                startActivity(intent);}
+                                else {
+                                    startActivity(new Intent(getBaseContext(), MainActivity.class));
+                                }
                                 break;
                             case (pickLevel):
                                 startActivity(new Intent(getBaseContext(), LevelSelectActivity.class));
@@ -295,7 +300,7 @@ public class MazeActivity extends Activity {
                         if (currentLocation == l) {
                             finishView.setImageResource(guyDrawableId);
                         } else {
-                            finishView.setImageResource(R.drawable.finish);
+                            finishView.setImageResource(ThemeDrawables.getFinish());
                         }
 
                         mazeDisplay.addView(finishView);
@@ -306,7 +311,7 @@ public class MazeActivity extends Activity {
                         if (currentLocation == l) {
                             pathView.setImageResource(guyDrawableId);
                         } else {
-                            pathView.setImageResource(R.drawable.path);
+                            pathView.setImageResource(ThemeDrawables.getPath());
                         }
 
                         mazeDisplay.addView(pathView);
@@ -317,7 +322,7 @@ public class MazeActivity extends Activity {
                         if (currentLocation == l) {
                             startView.setImageResource(guyDrawableId);
                         } else {
-                            startView.setImageResource(R.drawable.start);
+                            startView.setImageResource(ThemeDrawables.getStart());
                         }
 
                         mazeDisplay.addView(startView);
@@ -325,7 +330,7 @@ public class MazeActivity extends Activity {
                     case WALL:
                         ImageView wallView = new ImageView(this);
                         wallView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                        wallView.setImageResource(R.drawable.wall);
+                        wallView.setImageResource(ThemeDrawables.getWall());
 
                         mazeDisplay.addView(wallView);
                         break;
@@ -333,4 +338,5 @@ public class MazeActivity extends Activity {
             }
         }
     }
+
 }
