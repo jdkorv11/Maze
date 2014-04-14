@@ -10,8 +10,8 @@ package com.example.maze;
 public final class R {
     public static final class array {
         public static final int level_complete_options=0x7f050000;
-        public static final int pref_example_list_titles=0x7f050001;
-        public static final int pref_example_list_values=0x7f050002;
+        public static final int pref_visual_theme_list =0x7f050001;
+        public static final int pref_visual_theme_list_values =0x7f050002;
         public static final int pref_sync_frequency_titles=0x7f050003;
         public static final int pref_sync_frequency_values=0x7f050004;
     }
@@ -98,16 +98,16 @@ public final class R {
         public static final int pref_description_social_recommendations=0x7f070014;
         /**  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f070018;
+        public static final int pref_header_sync_data =0x7f070018;
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f070012;
+        public static final int pref_header_theme =0x7f070012;
         /**  Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f07001b;
+        public static final int pref_header_region =0x7f07001b;
         public static final int pref_ringtone_silent=0x7f07001e;
-        public static final int pref_title_add_friends_to_messages=0x7f070017;
+        public static final int pref_title_choose_visual_theme =0x7f070017;
         public static final int pref_title_display_name=0x7f070015;
         public static final int pref_title_new_message_notifications=0x7f07001c;
         public static final int pref_title_ringtone=0x7f07001d;
@@ -152,8 +152,8 @@ public final class R {
     }
     public static final class xml {
         public static final int pref_data_sync=0x7f040000;
-        public static final int pref_general=0x7f040001;
+        public static final int pref_themes =0x7f040001;
         public static final int pref_headers=0x7f040002;
-        public static final int pref_notification=0x7f040003;
+        public static final int pref_region =0x7f040003;
     }
 }

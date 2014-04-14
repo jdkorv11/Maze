@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import com.example.maze.high_scores.HighScoresActivity;
 import com.example.maze.level_select.LevelSelectActivity;
+import com.example.maze.options.OptionsActivity;
 
 /**
  * Created by Owner on 3/17/14.
@@ -30,5 +31,6 @@ public class MainActivity extends Activity {
 
     public void onOptionsSelect(View view) {
         Log.v(TAG, "onOptionsSelect");
+        startActivity(new Intent(this, OptionsActivity.class));
     }
 }

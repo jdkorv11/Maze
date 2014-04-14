@@ -3,13 +3,13 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="com.example.maze.OptionsActivity$GeneralPreferenceFragment"
-        android:title="@string/pref_header_general" />
+        android:fragment="com.example.maze.options.OptionsActivity$GeneralPreferenceFragment"
+        android:title="@string/pref_header_theme" />
     <header
-        android:fragment="com.example.maze.OptionsActivity$NotificationPreferenceFragment"
-        android:title="@string/pref_header_notifications" />
+        android:fragment="com.example.maze.options.OptionsActivity$NotificationPreferenceFragment"
+        android:title="@string/pref_header_region" />
     <header
-        android:fragment="com.example.maze.OptionsActivity$DataSyncPreferenceFragment"
-        android:title="@string/pref_header_data_sync" />
+        android:fragment="com.example.maze.options.OptionsActivity$DataSyncPreferenceFragment"
+        android:title="@string/pref_header_sync_data" />
 
 </preference-headers>
