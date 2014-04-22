@@ -13,6 +13,10 @@
         android:icon="@drawable/industrial_finish"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <provider
+                android:name="com.example.maze.high_scores.HSContentProvider"
+                android:authorities="com.example.maze.high_scores"
+                android:exported="true" />
         <activity
             android:name="com.example.maze.game_play.MazeActivity"
             android:label="@string/app_name"
@@ -39,6 +43,8 @@
             android:name="com.example.maze.options.OptionsActivity"
             android:label="@string/title_activity_options" >
         </activity>
+        <application android:name="com.example.maze.MyApplication">
+        </application>
     </application>
 
 </manifest>

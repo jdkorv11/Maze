@@ -11,7 +11,7 @@
 
     <string-array name="pref_visual_theme_list">
         <item>Industrial</item>
-        <item>Other</item>
+        <item>Retro</item>
     </string-array>
     <string-array name="pref_visual_theme_list_values">
         <item>0</item>

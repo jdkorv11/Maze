@@ -14,7 +14,7 @@ public class HSContentProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         Log.v("ScoresProvider", "delete");
-        Registrar
+        ScoreDB
                 .instance(getContext())
                 .getWritableDatabase()
                 .delete(DBContract.HighScores.TABLE, selection,
@@ -31,7 +31,7 @@ public class HSContentProvider extends ContentProvider {
     @Override
     public Uri insert(Uri uri, ContentValues values) {
         Log.v("ScoresProvider", "insert");
-        Registrar.instance(getContext()).getWritableDatabase()
+        ScoreDB.instance(getContext()).getWritableDatabase()
                 .insert(DBContract.HighScores.TABLE, null, values);
         return null;
     }
@@ -46,7 +46,7 @@ public class HSContentProvider extends ContentProvider {
     public Cursor query(Uri uri, String[] projection, String selection,
                         String[] selectionArgs, String sortOrder) {
         Log.v("ScoresProvider", "query");
-        return Registrar
+        return ScoreDB
                 .instance(getContext())
                 .getReadableDatabase()
                 .query(DBContract.HighScores.TABLE, projection, selection,
@@ -56,7 +56,7 @@ public class HSContentProvider extends ContentProvider {
     @Override
     public int update(Uri uri, ContentValues values, String whereClause,
                       String[] whereArgs) {
-        Registrar
+        ScoreDB
                 .instance(getContext())
                 .getWritableDatabase()
                 .update(DBContract.HighScores.TABLE, values, whereClause,
@@ -65,8 +65,8 @@ public class HSContentProvider extends ContentProvider {
         return 0;
     }
 
-    public static class Registrar extends SQLiteOpenHelper {
-        private static Registrar registrar = null;
+    public static class ScoreDB extends SQLiteOpenHelper {
+        private static ScoreDB scoreDB = null;
         public static final String DB_NAME = "HighScores";
         public static final int SCHEMA_VERSION = 1;
         private static final String CREATE_TABLE_SQL = "CREATE TABLE "
@@ -77,14 +77,14 @@ public class HSContentProvider extends ContentProvider {
                 + DBContract.HighScores.SCORE + " INTEGER,"
                 + DBContract.HighScores.NAME + " TEXT);";
 
-        public static Registrar instance(Context context) {
-            if (registrar == null) {
-                registrar = new Registrar(context);
+        public static ScoreDB instance(Context context) {
+            if (scoreDB == null) {
+                scoreDB = new ScoreDB(context);
             }
-            return registrar;
+            return scoreDB;
         }
 
-        private Registrar(Context context) {
+        private ScoreDB(Context context) {
             super(context, DB_NAME, null, SCHEMA_VERSION);
         }
 

@@ -1,5 +1,7 @@
 package com.example.maze;
 
+import android.util.SparseArray;
+
 import java.util.HashMap;
 
 /**
@@ -12,7 +14,7 @@ public class ThemeDrawables {
     public final static int INDUSTRIAL_THEME = 0;
     public final static int RETRO_THEME = 1;
 
-    private static int currentTheme = 1;
+    private static int currentTheme = 0;
     private final static String FINISH = "finish";
     private final static String START = "start";
     private final static String WALL = "wall";
@@ -56,10 +58,10 @@ public class ThemeDrawables {
         retro_map.put(BACKGROUND, R.drawable.retro_path);
     }
 
-    private static HashMap<Integer, HashMap<String, Integer>> themeMap;
+    private static SparseArray<HashMap<String, Integer>> themeMap;
 
     static {
-        themeMap = new HashMap<Integer, HashMap<String, Integer>>();
+        themeMap = new SparseArray<HashMap<String, Integer>>();
         themeMap.put(INDUSTRIAL_THEME, industrial_map);
         themeMap.put(RETRO_THEME, retro_map);
     }

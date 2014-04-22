@@ -7,6 +7,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.*;
 import com.example.maze.R;
+import com.example.maze.ThemeDrawables;
+import com.example.maze.high_scores.HSData;
 
 import java.util.List;
 
@@ -29,6 +31,9 @@ public class OptionsActivity extends PreferenceActivity {
      * shown on tablets.
      */
     private static final boolean ALWAYS_SIMPLE_PREFS = false;
+    public static final String THEME_PREF_KEY = "pref_theme_list";
+    public static final String REGION_PREF_KEY = "pref_region_list";
+    public static final String SYNC_PREF_KEY = "pref_sync_switch";
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -128,7 +133,11 @@ public class OptionsActivity extends PreferenceActivity {
                 // the preference's 'entries' list.
                 ListPreference listPreference = (ListPreference) preference;
                 int index = listPreference.findIndexOfValue(stringValue);
-
+                if (preference.getKey().equals(THEME_PREF_KEY)) {
+                    ThemeDrawables.setTheme(index);
+                } else if (preference.getKey().equals(REGION_PREF_KEY)) {
+                    HSData.instance().setRegion(Integer.valueOf(listPreference.getEntryValues()[index].toString()));
+                }
                 // Set the summary to reflect the new value.
                 preference
                         .setSummary(index >= 0 ? listPreference.getEntries()[index]
@@ -187,11 +196,7 @@ public class OptionsActivity extends PreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_themes);
 
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference("pref_theme_list"));
+            bindPreferenceSummaryToValue(findPreference(THEME_PREF_KEY));
         }
     }
 
@@ -211,7 +216,7 @@ public class OptionsActivity extends PreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("pref_region_list"));
+            bindPreferenceSummaryToValue(findPreference(REGION_PREF_KEY));
         }
     }
 
@@ -230,7 +235,7 @@ public class OptionsActivity extends PreferenceActivity {
             // to their values. When their values change, their summaries are
             // updated to reflect the new value, per the Android Design
             // guidelines.
-            bindPreferenceSummaryToValue(findPreference("pref_sync_switch"));
+            bindPreferenceSummaryToValue(findPreference(SYNC_PREF_KEY));
         }
     }
 }

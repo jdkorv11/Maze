@@ -1,8 +1,9 @@
 package com.example.maze.high_scores;
 
-import android.app.Activity;
+import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import com.example.maze.MyApplication;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,6 +20,7 @@ public class HSData {
 
     private ArrayList<MazeScore> highScores;
     private ReverseMazeScoreComparator mazeScoreComparator;
+    HighScoreLoader scoreLoader = new HighScoreLoader();
 
     public boolean isHighScore(int score) {
         MazeScore testScore = new MazeScore("dummyName", score, MazeScore.UNSPECIFIED);
@@ -29,6 +31,12 @@ public class HSData {
     }
 
     public void submitScore(MazeScore score) {
+        highScores.add(score);
+        highScores = HighScoresProcessor.getTop10Scores(highScores);
+        //TODO write to DB
+    }
+
+    public void internalSubmitScore(MazeScore score) {
         highScores.add(score);
         highScores = HighScoresProcessor.getTop10Scores(highScores);
     }
@@ -46,13 +54,29 @@ public class HSData {
         return region;
     }
 
-
-    AsyncTask<Activity, Integer, Cursor> scoreLoader = new HighScoreLoader();
-
-    private class HighScoreLoader extends AsyncTask<Activity, Integer, Cursor> {
+    private class HighScoreLoader extends AsyncTask<Context, Integer, Cursor> {
+        private Context context;
+        HSData data = HSData.instance();
         @Override
-        protected Cursor doInBackground(Activity... params) {
-            return null;
+        protected Cursor doInBackground(Context... params) {
+            context = params[0];
+            Cursor c = context.getContentResolver().query(
+                    DBContract.CONTENT_URI,
+                    new String[] { DBContract.HighScores._ID, DBContract.HighScores.NAME,
+                            DBContract.HighScores.SCORE, DBContract.HighScores.REGION },
+                    DBContract.HighScores.REGION, new String[] {String.valueOf(data.getRegion())},
+                    DBContract.HighScores.NAME);
+            return c;
+        }
+        @Override
+        protected void onPostExecute(Cursor c) {
+            c.moveToFirst();
+            for (int i = 0; i < c.getCount(); i++) {
+                int score = c.getInt(c.getColumnIndex(DBContract.HighScores.SCORE));
+                String name = c.getString(c.getColumnIndex(DBContract.HighScores.NAME));
+                data.internalSubmitScore(new MazeScore(name, score, data.getRegion()));
+                c.moveToNext();
+            }
         }
     }
 
@@ -73,7 +97,8 @@ public class HSData {
     private HSData() {
         highScores = new ArrayList<MazeScore>();
         mazeScoreComparator = new ReverseMazeScoreComparator();
-        //TODO load data from the database
+        scoreLoader = new HighScoreLoader();
+        scoreLoader.execute(MyApplication.getAppContext());
     }
 
     public class ReverseMazeScoreComparator implements Comparator<MazeScore> {
