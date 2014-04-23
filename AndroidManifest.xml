@@ -43,8 +43,7 @@
             android:name="com.example.maze.options.OptionsActivity"
             android:label="@string/title_activity_options" >
         </activity>
-        <application android:name="com.example.maze.MyApplication">
-        </application>
+
     </application>
 
 </manifest>
