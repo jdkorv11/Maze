@@ -1,6 +1,7 @@
 package com.example.maze;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,9 +18,12 @@ import com.example.maze.options.OptionsActivity;
  * Created by Owner on 3/17/14.
  */
 public class MainActivity extends Activity {
+
     private static final String TAG = "Main Activity";
+    public static Context appContext;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        appContext = getApplicationContext();
         // make all static classes have the proper values from preferences
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         int theme = Integer.valueOf(prefs.getString(OptionsActivity.THEME_PREF_KEY, "0"));

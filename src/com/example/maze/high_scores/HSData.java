@@ -1,17 +1,19 @@
 package com.example.maze.high_scores;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
-import com.example.maze.MyApplication;
+import com.example.maze.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 
 /**
  * a class to hold the data for the high scores list
- *
+ * <p/>
  * used to provide any class with access to the data
  */
 public class HSData {
@@ -20,7 +22,8 @@ public class HSData {
 
     private ArrayList<MazeScore> highScores;
     private ReverseMazeScoreComparator mazeScoreComparator;
-    HighScoreLoader scoreLoader = new HighScoreLoader();
+    HighScoreLoader dBScoreLoader;
+    HighScoreWriter dBScoreWriter;
 
     public boolean isHighScore(int score) {
         MazeScore testScore = new MazeScore("dummyName", score, MazeScore.UNSPECIFIED);
@@ -31,12 +34,13 @@ public class HSData {
     }
 
     public void submitScore(MazeScore score) {
-        highScores.add(score);
-        highScores = HighScoresProcessor.getTop10Scores(highScores);
-        //TODO write to DB
+        internalSubmitScore(score);
+        //TODO make able to be done more than once
+        dBScoreWriter.execute(MainActivity.appContext);
+        dBScoreWriter = new HighScoreWriter();
     }
 
-    public void internalSubmitScore(MazeScore score) {
+    private void internalSubmitScore(MazeScore score) {
         highScores.add(score);
         highScores = HighScoresProcessor.getTop10Scores(highScores);
     }
@@ -54,33 +58,8 @@ public class HSData {
         return region;
     }
 
-    private class HighScoreLoader extends AsyncTask<Context, Integer, Cursor> {
-        private Context context;
-        HSData data = HSData.instance();
-        @Override
-        protected Cursor doInBackground(Context... params) {
-            context = params[0];
-            Cursor c = context.getContentResolver().query(
-                    DBContract.CONTENT_URI,
-                    new String[] { DBContract.HighScores._ID, DBContract.HighScores.NAME,
-                            DBContract.HighScores.SCORE, DBContract.HighScores.REGION },
-                    DBContract.HighScores.REGION, new String[] {String.valueOf(data.getRegion())},
-                    DBContract.HighScores.NAME);
-            return c;
-        }
-        @Override
-        protected void onPostExecute(Cursor c) {
-            c.moveToFirst();
-            for (int i = 0; i < c.getCount(); i++) {
-                int score = c.getInt(c.getColumnIndex(DBContract.HighScores.SCORE));
-                String name = c.getString(c.getColumnIndex(DBContract.HighScores.NAME));
-                data.internalSubmitScore(new MazeScore(name, score, data.getRegion()));
-                c.moveToNext();
-            }
-        }
-    }
-
     private static HSData instance;
+
     /**
      * Returns an instance of SessionHighScores used for scoring the game
      *
@@ -97,13 +76,69 @@ public class HSData {
     private HSData() {
         highScores = new ArrayList<MazeScore>();
         mazeScoreComparator = new ReverseMazeScoreComparator();
-        scoreLoader = new HighScoreLoader();
-        scoreLoader.execute(MyApplication.getAppContext());
+        dBScoreLoader = new HighScoreLoader();
+        dBScoreLoader.execute(MainActivity.appContext);
+        dBScoreWriter = new HighScoreWriter();
+
+    }
+
+    private class HighScoreLoader extends AsyncTask<Context, Integer, Cursor> {
+        private Context context;
+        private HSData data;
+
+        @Override
+        protected Cursor doInBackground(Context... params) {
+            data = HSData.instance();
+            context = params[0];
+            Cursor c = context.getContentResolver().query(
+                    DBContract.CONTENT_URI,
+                    new String[]{DBContract.HighScores._ID, DBContract.HighScores.NAME,
+                            DBContract.HighScores.SCORE, DBContract.HighScores.REGION},
+                    null, null, null);
+            return c;
+        }
+
+        @Override
+        protected void onPostExecute(Cursor c) {
+            c.moveToFirst();
+            for (int i = 0; i < c.getCount(); i++) {
+                int score = c.getInt(c.getColumnIndex(DBContract.HighScores.SCORE));
+                if (c.getInt(c.getColumnIndex(DBContract.HighScores.REGION)) == data.getRegion()) {
+                    String name = c.getString(c.getColumnIndex(DBContract.HighScores.NAME));
+                    data.internalSubmitScore(new MazeScore(name, score, data.getRegion()));
+                }
+                c.moveToNext();
+            }
+        }
+    }
+
+    private class HighScoreWriter extends AsyncTask<Context, Integer, Boolean> {
+        private Context context;
+        HSData data;
+
+        @Override
+        protected Boolean doInBackground(Context... params) {
+            context = params[0];
+            data = HSData.instance();
+            context.getContentResolver().delete(DBContract.CONTENT_URI, DBContract.HighScores.SCORE, null);
+            ArrayList<MazeScore> highScores = data.getHighScores();
+            Iterator<MazeScore> hsIter = highScores.iterator();
+            while (hsIter.hasNext()) {
+                MazeScore score = hsIter.next();
+                ContentValues putScore = new ContentValues();
+                putScore.put(DBContract.HighScores.NAME, score.getName());
+                putScore.put(DBContract.HighScores.SCORE, score.getScore());
+                putScore.put(DBContract.HighScores.REGION, score.getRegion());
+                context.getContentResolver().insert(DBContract.CONTENT_URI, putScore);
+            }
+            return true;
+        }
     }
 
     public class ReverseMazeScoreComparator implements Comparator<MazeScore> {
         /**
          * Compares 2 MazeScore objects to order then greatest to least
+         *
          * @param lhs the first MazeScore
          * @param rhs the second MazeScore
          * @return a negative integer, zero, or a positive integer as the first argument is greater than, equal to,
