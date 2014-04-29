@@ -107,22 +107,22 @@ public class MazeActivity extends Activity {
         layout.setOnTouchListener(new OnSwipeTouchListener(this) {
             @Override
             public void onSwipeLeft() {
-
+                move(MovementController.WEST);
             }
 
             @Override
             public void onSwipeRight() {
-
+                move(MovementController.EAST);
             }
 
             @Override
             public void onSwipeUp() {
-
+                move(MovementController.NORTH);
             }
 
             @Override
             public void onSwipeDown() {
-
+                move(MovementController.SOUTH);
             }
         });
 
