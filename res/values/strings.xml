@@ -6,12 +6,16 @@
     <string name="solve">Solve</string>
     <string name="playAgainBtn">Play Again</string>
     <string name="youWin">You got the Chip!</string>
-    <string name="instructioins">Get the Computer Chip</string>
     <string name="congratulations">Congratulations!</string>
     <string name="level_select">Level Select</string>
     <string name="high_scores">High Scores</string>
     <string name="start_game">Start Game</string>
     <string name="options">Options</string>
-    <string name="level_select_instructions">Pick a level</string><string name="submit">Submit</string><string name="submit_dialog_score_pt1">Score of</string><string name="main_menu">Main Menu</string><string name="options_region">Change Region</string><string name="options_theme">Themes</string>
+    <string name="level_select_instructions">Pick a level</string>
+    <string name="submit">Submit</string>
+    <string name="submit_dialog_score_pt1">Score of</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="options_theme">Themes</string>
+    <string name="maze_directions">Swipe to navigate the maze and get the prize</string>
 
 </resources>

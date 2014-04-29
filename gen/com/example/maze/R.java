@@ -59,7 +59,7 @@ public final class R {
         public static final int main_options=0x7f0a000c;
         public static final int main_start_game=0x7f0a000b;
         public static final int mazeHolder=0x7f0a000e;
-        public static final int maze_activity_score=0x7f0a000d;
+        public static final int maze_activity_directions =0x7f0a000d;
         public static final int rightBtn=0x7f0a0010;
         public static final int submit_dialog_player=0x7f0a0014;
         public static final int submit_dialog_score=0x7f0a0013;

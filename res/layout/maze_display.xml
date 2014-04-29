@@ -10,62 +10,24 @@
     android:background="@drawable/industrial_path">
 
      <TextView
-        android:id="@+id/maze_activity_score"
+        android:id="@+id/maze_activity_directions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/maze_directions"
+        android:gravity="center_horizontal"/>
      
     <GridLayout
         android:id="@+id/mazeHolder"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_below="@+id/maze_activity_score"
+        android:layout_below="@+id/maze_activity_directions"
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="60dp"
         android:useDefaultMargins="false" >
     </GridLayout>
-
-    <Button
-        android:id="@+id/downBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/btn_down"
-        android:onClick="move" />
-
-    <Button
-        android:id="@+id/rightBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignBaseline="@+id/downBtn"
-        android:layout_alignBottom="@+id/downBtn"
-        android:layout_toRightOf="@+id/downBtn"
-        android:background="@drawable/btn_right"
-        android:onClick="move" />
-
-    <Button
-        android:id="@+id/leftBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignBaseline="@+id/downBtn"
-        android:layout_alignBottom="@+id/downBtn"
-        android:layout_toLeftOf="@+id/downBtn"
-        android:background="@drawable/btn_left"
-        android:onClick="move" />
-
-    <Button
-        android:id="@+id/upBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/downBtn"
-        android:layout_alignLeft="@+id/downBtn"
-        android:background="@drawable/btn_up"
-        android:onClick="move" />
-
-   
 
 </RelativeLayout>

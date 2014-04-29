@@ -104,8 +104,27 @@ public class MazeActivity extends Activity {
             startActivity(new Intent(this, MainActivity.class));
         }
 
-        TextView title = (TextView) findViewById(R.id.maze_activity_score);
-        title.setText("Score to beat: " + String.valueOf(sessionScores.getScore(level)));
+        layout.setOnTouchListener(new OnSwipeTouchListener(this) {
+            @Override
+            public void onSwipeLeft() {
+
+            }
+
+            @Override
+            public void onSwipeRight() {
+
+            }
+
+            @Override
+            public void onSwipeUp() {
+
+            }
+
+            @Override
+            public void onSwipeDown() {
+
+            }
+        });
 
         currentLocation = maze.getStart();
 
@@ -224,41 +243,40 @@ public class MazeActivity extends Activity {
         return true;
     }
 
-    public void move(View v) {
-        int direction = -1;
+    public void move(int direction) {
         if (!alreadyStarted) {
             startTimer();
             alreadyStarted = true;
         }
-        switch (v.getId()) {
-            case R.id.leftBtn:
+        boolean validDirection = true;
+        switch (direction) {
+            case MovementController.WEST:
                 if (maze.canGetWest(currentLocation)) {
-                    direction = MovementController.WEST;
                     currentLocation = maze.getWest(currentLocation);
                 }
                 break;
-            case R.id.upBtn:
+            case MovementController.NORTH:
                 if (maze.canGetNorth(currentLocation)) {
-                    direction = MovementController.NORTH;
                     currentLocation = maze.getNorth(currentLocation);
                 }
                 break;
-            case R.id.rightBtn:
+            case MovementController.EAST:
                 if (maze.canGetEast(currentLocation)) {
-                    direction = MovementController.EAST;
                     currentLocation = maze.getEast(currentLocation);
                 }
                 break;
-            case R.id.downBtn:
+            case MovementController.SOUTH:
                 if (maze.canGetSouth(currentLocation)) {
-                    direction = MovementController.SOUTH;
                     currentLocation = maze.getSouth(currentLocation);
                 }
                 break;
             default:
                 Log.v("MazeActivity", "invalid call to move method");
+                validDirection = false;
         }
-        eventController.takeStep(direction);
+        if (validDirection) {
+            eventController.takeStep(direction);
+        }
     }
 
     private Time startTime;
