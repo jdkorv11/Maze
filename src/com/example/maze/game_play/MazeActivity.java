@@ -296,7 +296,7 @@ public class MazeActivity extends Activity {
         long elapsedTime = (endTime.toMillis(true) - startTime.toMillis(true));
 
         // calculate the score so a shorter time results in a higher score
-        double score = ((5000.0 / (5000.0 + elapsedTime))) * 5000;
+        double score = ((500.0 / (100.0 + elapsedTime))) * 10000;
         Log.v("MazeActivity", "Score = " + String.valueOf(score));
         return (int) score;
     }

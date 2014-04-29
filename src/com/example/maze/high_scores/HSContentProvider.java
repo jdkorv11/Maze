@@ -75,6 +75,10 @@ public class HSContentProvider extends ContentProvider {
                 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + DBContract.HighScores.SCORE + " INTEGER,"
                 + DBContract.HighScores.NAME + " TEXT);";
+        private static final String FILL_TABLE_SQL = "INSERT INTO " +
+                DBContract.HighScores.TABLE + " (" +
+                DBContract.HighScores.NAME + "," +
+                DBContract.HighScores.SCORE + ") VALUES ('Player', 0);";
 
         public static ScoreDB instance(Context context) {
             if (scoreDB == null) {
@@ -92,9 +96,13 @@ public class HSContentProvider extends ContentProvider {
             try {
                 db.beginTransaction();
                 db.execSQL(CREATE_TABLE_SQL);
-                db.setTransactionSuccessful();
                 Log.v("DB", "DB created");
-                Log.v("DB", "DB filled");
+                for (int i = 0; i < 10; i++) {
+                    db.execSQL(FILL_TABLE_SQL);
+                    Log.v("DB", "inserted row");
+                }
+                Log.v("DB", "successfully completed insertion");
+                db.setTransactionSuccessful();
             } catch (Exception e) {
                 Log.v("DB", "DB creation failed");
                 e.printStackTrace(System.err);

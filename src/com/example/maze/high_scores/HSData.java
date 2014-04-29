@@ -32,20 +32,20 @@ public class HSData {
 
     public void submitScore(MazeScore score) {
         internalSubmitScore(score);
-        new Runnable() {
-            public void run() {
+        //new Runnable() {
+            //public void run() {
                 Context context = MainActivity.appContext;
-                HSData data = HSData.instance();
                 context.getContentResolver().delete(DBContract.CONTENT_URI, DBContract.HighScores.SCORE, null);
+                HSData data = HSData.instance();
                 ArrayList<MazeScore> highScores = data.getHighScores();
-                for (MazeScore score : highScores) {
+                for (MazeScore mScore : highScores) {
                     ContentValues putScore = new ContentValues();
-                    putScore.put(DBContract.HighScores.NAME, score.getName());
-                    putScore.put(DBContract.HighScores.SCORE, score.getScore());
+                    putScore.put(DBContract.HighScores.NAME, mScore.getName());
+                    putScore.put(DBContract.HighScores.SCORE, mScore.getScore());
                     context.getContentResolver().insert(DBContract.CONTENT_URI, putScore);
                 }
-            }
-        };
+            //}
+        //};
         if (MainActivity.prefs.getBoolean(OptionsActivity.SYNC_PREF_KEY, false)) {
             HSSyncer syncer = new HSSyncer();
             syncer.submitScoresForSync(highScores);
