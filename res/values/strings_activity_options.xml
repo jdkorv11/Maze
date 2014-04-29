@@ -24,20 +24,4 @@
     <string name="pref_switch_off">Off</string>
     <string name="pref_summary_sync_data">Synchronize high scores with online high scores</string>
 
-    <!-- Example settings for Regions -->
-    <string name="pref_header_region">Region</string>
-    <string name="pref_title_set_region">Set Region</string>
-    <string-array name="pref_region_titles">
-        <item>East</item>
-        <item>Central</item>
-        <item>West</item>
-        <item>Unspecified</item>
-    </string-array>
-    <string-array name="pref_region_values">
-        <item>3</item>
-        <item>2</item>
-        <item>1</item>
-        <item>0</item>
-    </string-array>
-
 </resources>

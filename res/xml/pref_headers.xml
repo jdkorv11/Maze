@@ -6,9 +6,6 @@
         android:fragment="com.example.maze.options.OptionsActivity$GeneralPreferenceFragment"
         android:title="@string/pref_header_theme" />
     <header
-        android:fragment="com.example.maze.options.OptionsActivity$NotificationPreferenceFragment"
-        android:title="@string/pref_header_region" />
-    <header
         android:fragment="com.example.maze.options.OptionsActivity$DataSyncPreferenceFragment"
         android:title="@string/pref_header_sync_data" />
 

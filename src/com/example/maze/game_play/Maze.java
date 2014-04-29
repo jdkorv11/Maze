@@ -44,7 +44,7 @@ public class Maze {
     private Location[][] maze;
     private int[] dimensions = new int[2];
 
-    public void fillMaze(InputStream mazeFile) {
+    void fillMaze(InputStream mazeFile) {
         Scanner input = new Scanner(mazeFile);
 
         dimensions[0] = input.nextInt();

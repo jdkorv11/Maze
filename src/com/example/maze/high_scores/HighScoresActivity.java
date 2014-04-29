@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class HighScoresActivity extends Activity {
 
-    HSData hsData;
+    private HSData hsData;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

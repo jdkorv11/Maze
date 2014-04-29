@@ -6,12 +6,15 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.text.format.Time;
 import android.util.Log;
+import android.view.Display;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.*;
 import com.example.maze.MainActivity;
 import com.example.maze.R;
@@ -28,7 +31,8 @@ import java.io.InputStream;
 public class MazeActivity extends Activity {
 
     private Maze maze;
-    private ViewGroup mazeDisplay;
+    private RelativeLayout layout;
+    private GridLayout mazeDisplay;
     private Location currentLocation;
     private boolean alreadyStarted = false;
     private SessionHighScores sessionScores;
@@ -36,7 +40,7 @@ public class MazeActivity extends Activity {
     private String level;
 
     public static final String LEVEL = "level";
-    public static MovementController.MovementListener listener;
+    private static MovementController.MovementListener listener;
     private MovementController eventController;
 
     @Override
@@ -45,13 +49,13 @@ public class MazeActivity extends Activity {
         sessionScores = SessionHighScores.instance();
         hsData = HSData.instance();
 
-        RelativeLayout layout = (RelativeLayout) getLayoutInflater().inflate(R.layout.maze_display, null);
+        layout = (RelativeLayout) getLayoutInflater().inflate(R.layout.maze_display, null);
         setContentView(layout);
         layout.setBackgroundResource(ThemeDrawables.getBackground());
 
 
-        mazeDisplay = (ViewGroup) findViewById(R.id.mazeHolder);
-        ((GridLayout) mazeDisplay).setUseDefaultMargins(false);
+        mazeDisplay = (GridLayout) findViewById(R.id.mazeHolder);
+        mazeDisplay.setUseDefaultMargins(false);
 
         eventController = new MovementController(this);
         listener = new MovementController.MovementListener() {
@@ -166,7 +170,7 @@ public class MazeActivity extends Activity {
                 } else {
                     player = et.getHint().toString();
                 }
-                hsData.submitScore(new MazeScore(player, totalScore, hsData.getRegion()));
+                hsData.submitScore(new MazeScore(player, totalScore));
                 dialog.dismiss();
                 startActivity(new Intent(MazeActivity.this, HighScoresActivity.class));
             }
@@ -177,7 +181,7 @@ public class MazeActivity extends Activity {
     private void displayEndOfLevelOptions(int totalScore, int score) {
         // alert dialog to contain end of game options
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Level Completed\nScore: " + score)
+        builder.setTitle("Level Completed\nScore: " + score + " Total: " + totalScore)
                 .setItems(R.array.level_complete_options, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // The 'which' argument contains the index position
@@ -189,11 +193,11 @@ public class MazeActivity extends Activity {
                         switch (which) {
                             case (nextLevel):
                                 if (Integer.valueOf(level) < LevelSelectActivity.getNumOfLevels()) {
-                                int gotoLevel = Integer.valueOf(level) + 1;
-                                Intent intent = new Intent(getBaseContext(), MazeActivity.class);
-                                intent.putExtra(MazeActivity.LEVEL, String.valueOf(gotoLevel));
-                                startActivity(intent);}
-                                else {
+                                    int gotoLevel = Integer.valueOf(level) + 1;
+                                    Intent intent = new Intent(getBaseContext(), MazeActivity.class);
+                                    intent.putExtra(MazeActivity.LEVEL, String.valueOf(gotoLevel));
+                                    startActivity(intent);
+                                } else {
                                     startActivity(new Intent(getBaseContext(), MainActivity.class));
                                 }
                                 break;
@@ -226,42 +230,35 @@ public class MazeActivity extends Activity {
             startTimer();
             alreadyStarted = true;
         }
-        boolean canMove = false;
         switch (v.getId()) {
             case R.id.leftBtn:
                 if (maze.canGetWest(currentLocation)) {
                     direction = MovementController.WEST;
                     currentLocation = maze.getWest(currentLocation);
-                    canMove = true;
                 }
                 break;
             case R.id.upBtn:
                 if (maze.canGetNorth(currentLocation)) {
                     direction = MovementController.NORTH;
                     currentLocation = maze.getNorth(currentLocation);
-                    canMove = true;
                 }
                 break;
             case R.id.rightBtn:
                 if (maze.canGetEast(currentLocation)) {
                     direction = MovementController.EAST;
                     currentLocation = maze.getEast(currentLocation);
-                    canMove = true;
                 }
                 break;
             case R.id.downBtn:
                 if (maze.canGetSouth(currentLocation)) {
                     direction = MovementController.SOUTH;
                     currentLocation = maze.getSouth(currentLocation);
-                    canMove = true;
                 }
                 break;
             default:
                 Log.v("MazeActivity", "invalid call to move method");
         }
-        if (canMove) {
-            eventController.takeStep(direction);
-        }
+        eventController.takeStep(direction);
     }
 
     private Time startTime;
@@ -286,9 +283,31 @@ public class MazeActivity extends Activity {
         return (int) score;
     }
 
+    private Bitmap finishImg;
+    private Bitmap startImg;
+    private Bitmap wallImg;
+    private Bitmap pathImg;
+    private Bitmap guyImg;
+
     private void displayMaze(int guyDrawableId) {
-        ((GridLayout) mazeDisplay).setColumnCount(maze.getWidth());
-        ((GridLayout) mazeDisplay).setRowCount(maze.getHeight());
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int dispWidth = size.x;
+        mazeDisplay.setColumnCount(maze.getWidth());
+        mazeDisplay.setRowCount(maze.getHeight());
+        int imageSize = (dispWidth - 20) / maze.getWidth();
+
+        finishImg = BitmapFactory.decodeResource(getResources(), ThemeDrawables.getFinish());
+        finishImg = Bitmap.createScaledBitmap(finishImg, imageSize, imageSize, true);
+        startImg = BitmapFactory.decodeResource(getResources(), ThemeDrawables.getStart());
+        startImg = Bitmap.createScaledBitmap(startImg, imageSize, imageSize, true);
+        wallImg = BitmapFactory.decodeResource(getResources(), ThemeDrawables.getWall());
+        wallImg = Bitmap.createScaledBitmap(wallImg, imageSize, imageSize, true);
+        pathImg = BitmapFactory.decodeResource(getResources(), ThemeDrawables.getPath());
+        pathImg = Bitmap.createScaledBitmap(pathImg, imageSize, imageSize, true);
+        guyImg = BitmapFactory.decodeResource(getResources(), guyDrawableId);
+        guyImg = Bitmap.createScaledBitmap(guyImg, imageSize, imageSize, true);
 
         for (int i = 0; i < maze.getHeight(); i++) {
             for (int j = 0; j < maze.getWidth(); j++) {
@@ -298,9 +317,9 @@ public class MazeActivity extends Activity {
                         ImageView finishView = new ImageView(this);
                         finishView.setScaleType(ImageView.ScaleType.FIT_CENTER);
                         if (currentLocation == l) {
-                            finishView.setImageResource(guyDrawableId);
+                            finishView.setImageBitmap(guyImg);
                         } else {
-                            finishView.setImageResource(ThemeDrawables.getFinish());
+                            finishView.setImageBitmap(finishImg);
                         }
 
                         mazeDisplay.addView(finishView);
@@ -309,9 +328,9 @@ public class MazeActivity extends Activity {
                         ImageView pathView = new ImageView(this);
                         pathView.setScaleType(ImageView.ScaleType.FIT_CENTER);
                         if (currentLocation == l) {
-                            pathView.setImageResource(guyDrawableId);
+                            pathView.setImageBitmap(guyImg);
                         } else {
-                            pathView.setImageResource(ThemeDrawables.getPath());
+                            pathView.setImageBitmap(pathImg);
                         }
 
                         mazeDisplay.addView(pathView);
@@ -320,9 +339,9 @@ public class MazeActivity extends Activity {
                         ImageView startView = new ImageView(this);
                         startView.setScaleType(ImageView.ScaleType.FIT_CENTER);
                         if (currentLocation == l) {
-                            startView.setImageResource(guyDrawableId);
+                            startView.setImageBitmap(guyImg);
                         } else {
-                            startView.setImageResource(ThemeDrawables.getStart());
+                            startView.setImageBitmap(startImg);
                         }
 
                         mazeDisplay.addView(startView);
@@ -330,7 +349,7 @@ public class MazeActivity extends Activity {
                     case WALL:
                         ImageView wallView = new ImageView(this);
                         wallView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                        wallView.setImageResource(ThemeDrawables.getWall());
+                        wallView.setImageBitmap(wallImg);
 
                         mazeDisplay.addView(wallView);
                         break;
@@ -338,5 +357,4 @@ public class MazeActivity extends Activity {
             }
         }
     }
-
 }

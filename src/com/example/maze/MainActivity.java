@@ -9,7 +9,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
-import com.example.maze.high_scores.HSData;
 import com.example.maze.high_scores.HighScoresActivity;
 import com.example.maze.level_select.LevelSelectActivity;
 import com.example.maze.options.OptionsActivity;
@@ -21,15 +20,14 @@ public class MainActivity extends Activity {
 
     private static final String TAG = "Main Activity";
     public static Context appContext;
+    public static SharedPreferences prefs;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         appContext = getApplicationContext();
         // make all static classes have the proper values from preferences
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
         int theme = Integer.valueOf(prefs.getString(OptionsActivity.THEME_PREF_KEY, "0"));
         ThemeDrawables.setTheme(theme);
-        int region = Integer.valueOf(prefs.getString(OptionsActivity.REGION_PREF_KEY, "0"));
-        HSData.instance().setRegion(region);
         RelativeLayout layout = (RelativeLayout) getLayoutInflater().inflate(R.layout.main_activity, null);
         layout.setBackgroundResource(ThemeDrawables.getBackground());
         setContentView(layout);

@@ -1,12 +1,11 @@
 package com.example.maze.high_scores;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * Abstract class used to process MazeScores
  */
-public abstract class HighScoresProcessor {
+abstract class HighScoresComparer {
 
     /**
      * Returns the top ten scores from a given List of MazeScore objects. If the initial list has
@@ -31,13 +30,11 @@ public abstract class HighScoresProcessor {
      * @param scoreList List<MazeScore> An List of MazeScore objects to get the lowest score from
      * @return MazeScore The lowest MazeScore
      */
-    public static MazeScore getLowestScore(ArrayList<MazeScore> scoreList) {
+    private static MazeScore getLowestScore(ArrayList<MazeScore> scoreList) {
 
         MazeScore lowScore = null;
-        Iterator<MazeScore> iter = scoreList.iterator();
 
-        while (iter.hasNext()) {
-            MazeScore tempScore = iter.next();
+        for (MazeScore tempScore : scoreList) {
             if (lowScore == null || tempScore.getScore() <= lowScore.getScore()) {
                 lowScore = tempScore;
             }

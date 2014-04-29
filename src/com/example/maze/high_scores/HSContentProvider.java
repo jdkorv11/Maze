@@ -73,7 +73,6 @@ public class HSContentProvider extends ContentProvider {
                 + DBContract.HighScores.TABLE + "("
                 + DBContract.HighScores._ID
                 + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                + DBContract.HighScores.REGION + " TEXT,"
                 + DBContract.HighScores.SCORE + " INTEGER,"
                 + DBContract.HighScores.NAME + " TEXT);";
 

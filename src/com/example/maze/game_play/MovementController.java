@@ -23,7 +23,7 @@ public class MovementController extends EventObject {
 		public void onStep(int direction);
 	}
 
-	protected ArrayList<MovementListener> eventListenerList = new ArrayList<MovementListener>();
+	private ArrayList<MovementListener> eventListenerList = new ArrayList<MovementListener>();
 
 	/**
 	 * Adds an eventListener to eventListenerList
@@ -48,9 +48,9 @@ public class MovementController extends EventObject {
 	public void takeStep(int direction) {
 		Object[] listeners = eventListenerList.toArray();
 		this.direction = direction;
-		for (int i = 0; i < listeners.length; i++) {
-			((MovementListener) listeners[i]).onStep(direction);
-		}
+        for (Object listener : listeners) {
+            ((MovementListener) listener).onStep(direction);
+        }
 	}
 
 	public int getDirection() {

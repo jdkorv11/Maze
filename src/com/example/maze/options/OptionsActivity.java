@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.preference.*;
 import com.example.maze.R;
 import com.example.maze.ThemeDrawables;
-import com.example.maze.high_scores.HSData;
 
 import java.util.List;
 
@@ -32,7 +31,6 @@ public class OptionsActivity extends PreferenceActivity {
      */
     private static final boolean ALWAYS_SIMPLE_PREFS = false;
     public static final String THEME_PREF_KEY = "pref_theme_list";
-    public static final String REGION_PREF_KEY = "pref_region_list";
     public static final String SYNC_PREF_KEY = "pref_sync_switch";
 
     @Override
@@ -57,14 +55,10 @@ public class OptionsActivity extends PreferenceActivity {
 
         // Add 'general' preferences.
         addPreferencesFromResource(R.xml.pref_themes);
-
-        // Add 'notifications' preferences, and a corresponding header.
         PreferenceCategory fakeHeader = new PreferenceCategory(this);
-        fakeHeader.setTitle(R.string.pref_header_region);
-        getPreferenceScreen().addPreference(fakeHeader);
-        addPreferencesFromResource(R.xml.pref_region);
 
         // Add 'data and sync' preferences, and a corresponding header.
+        getPreferenceScreen().addPreference(fakeHeader);
         fakeHeader = new PreferenceCategory(this);
         fakeHeader.setTitle(R.string.pref_header_sync_data);
         getPreferenceScreen().addPreference(fakeHeader);
@@ -103,8 +97,7 @@ public class OptionsActivity extends PreferenceActivity {
      * "simplified" settings UI should be shown.
      */
     private static boolean isSimplePreferences(Context context) {
-        return ALWAYS_SIMPLE_PREFS
-                || Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB
+        return Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB
                 || !isXLargeTablet(context);
     }
 
@@ -135,8 +128,6 @@ public class OptionsActivity extends PreferenceActivity {
                 int index = listPreference.findIndexOfValue(stringValue);
                 if (preference.getKey().equals(THEME_PREF_KEY)) {
                     ThemeDrawables.setTheme(index);
-                } else if (preference.getKey().equals(REGION_PREF_KEY)) {
-                    HSData.instance().setRegion(Integer.valueOf(listPreference.getEntryValues()[index].toString()));
                 }
                 // Set the summary to reflect the new value.
                 preference
@@ -197,26 +188,6 @@ public class OptionsActivity extends PreferenceActivity {
             addPreferencesFromResource(R.xml.pref_themes);
 
             bindPreferenceSummaryToValue(findPreference(THEME_PREF_KEY));
-        }
-    }
-
-    /**
-     * This fragment shows notification preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
-     */
-    @TargetApi (Build.VERSION_CODES.HONEYCOMB)
-    public static class NotificationPreferenceFragment extends
-            PreferenceFragment {
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_region);
-
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference(REGION_PREF_KEY));
         }
     }
 

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="@drawable/industrial_path">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/high_scores"
+            android:layout_gravity="center_horizontal|top"
+            android:layout_marginTop="@dimen/activity_vertical_margin"/>
+
+    <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/highScoresList"
+            android:layout_gravity="center"
+            android:layout_margin="@android:dimen/app_icon_size"
+            android:background="@drawable/industrial_wall"
+            android:padding="@dimen/activity_horizontal_margin"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/main_menu"
+            android:id="@+id/hsMainMenu"
+            android:layout_gravity="bottom|left"
+            android:background="@drawable/industrial_wall"
+            android:onClick="toMainMenu"
+            android:padding="6dp"
+            android:layout_margin="@dimen/activity_horizontal_margin"/>
+
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/level_select"
+            android:id="@+id/hsLevelSelect"
+            android:layout_gravity="right|bottom"
+            android:background="@drawable/industrial_wall"
+            android:onClick="toLevelSelect"
+            android:padding="6dp"
+            android:layout_margin="@dimen/activity_horizontal_margin"/>
+
+    <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_margin="50dp"
+            android:src="@drawable/high_score"
+            />
+
+
+</FrameLayout>

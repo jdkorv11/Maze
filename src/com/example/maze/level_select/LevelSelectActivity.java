@@ -34,7 +34,7 @@ import java.util.Scanner;
 public class LevelSelectActivity extends Activity {
 
     private static int numOfLevels;
-    RelativeLayout layout;
+    private RelativeLayout layout;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
