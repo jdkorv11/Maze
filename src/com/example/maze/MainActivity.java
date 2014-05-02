@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -45,6 +47,27 @@ public class MainActivity extends Activity {
             syncer.pullScores();
         }
 
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_level_select:
+			startActivity(new Intent(this, LevelSelectActivity.class));
+			break;
+		case R.id.menu_high_scores:
+			startActivity(new Intent(this, HighScoresActivity.class));
+			break;
+		case R.id.menu_options:
+			startActivity(new Intent(this, OptionsActivity.class));
+			break;
+		}
+		return false;
 	}
 
 	public void onStartGameSelect(View view) {

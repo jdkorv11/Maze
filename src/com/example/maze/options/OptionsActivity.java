@@ -2,12 +2,19 @@ package com.example.maze.options;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.*;
+import android.view.Menu;
+import android.view.MenuItem;
+
+import com.example.maze.MainActivity;
 import com.example.maze.R;
 import com.example.maze.ThemeDrawables;
+import com.example.maze.high_scores.HighScoresActivity;
+import com.example.maze.level_select.LevelSelectActivity;
 
 import java.util.List;
 
@@ -32,6 +39,28 @@ public class OptionsActivity extends PreferenceActivity {
 
         setupSimplePreferencesScreen();
     }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_main:
+			startActivity(new Intent(this, MainActivity.class));
+			break;
+		case R.id.menu_level_select:
+			startActivity(new Intent(this, LevelSelectActivity.class));
+			break;
+		case R.id.menu_high_scores:
+			startActivity(new Intent(this, HighScoresActivity.class));
+			break;
+		}
+		return false;
+	}
 
     /**
      * Shows the simplified settings UI if the device configuration if the

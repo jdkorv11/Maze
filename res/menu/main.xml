@@ -1,9 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/menu_main"
+        android:showAsAction="collapseActionView"
+        android:title="@string/main_menu"/>
+    <item
+        android:id="@+id/menu_level_select"
+        android:showAsAction="collapseActionView"
+        android:title="@string/level_select"/>
+    <item
+        android:id="@+id/menu_high_scores"
+        android:showAsAction="collapseActionView"
+        android:title="@string/high_scores"/>
+    <item
+        android:id="@+id/menu_options"
         android:orderInCategory="100"
-        android:showAsAction="never"
-        android:title="@string/action_settings"/>
+        android:showAsAction="collapseActionView"
+        android:title="@string/options"/>
 
 </menu>

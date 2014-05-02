@@ -247,7 +247,6 @@ containing a value of this type.
         public static final int retro_wall=0x7f020031;
     }
     public static final class id {
-        public static final int action_settings=0x7f060015;
         public static final int gridView=0x7f06000a;
         public static final int highScoresList=0x7f060007;
         public static final int hsLevelSelect=0x7f060009;
@@ -262,6 +261,10 @@ containing a value of this type.
         public static final int main_start_game=0x7f06000e;
         public static final int mazeHolder=0x7f060011;
         public static final int maze_activity_directions=0x7f060010;
+        public static final int menu_high_scores=0x7f060017;
+        public static final int menu_level_select=0x7f060016;
+        public static final int menu_main=0x7f060015;
+        public static final int menu_options=0x7f060018;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
         public static final int satellite=0x7f060002;
@@ -295,7 +298,6 @@ containing a value of this type.
         public static final int main=0x7f0c0000;
     }
     public static final class string {
-        public static final int action_settings=0x7f07001b;
         public static final int app_name=0x7f07001a;
         /**   Title for notification shown when GooglePlayServices needs to be
         enabled for a application to work. [CHAR LIMIT=70] 
@@ -391,32 +393,28 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070013;
-        public static final int congratulations=0x7f07001f;
-        public static final int high_scores=0x7f070021;
-        public static final int level_select=0x7f070020;
-        public static final int level_select_instructions=0x7f070024;
-        public static final int main_menu=0x7f070027;
-        public static final int maze_directions=0x7f070029;
-        public static final int options=0x7f070023;
-        public static final int options_theme=0x7f070028;
-        public static final int playAgainBtn=0x7f07001d;
-        /**  Example settings for Data & Sync 
+        public static final int high_scores=0x7f07001c;
+        public static final int level_select=0x7f07001b;
+        public static final int level_select_instructions=0x7f07001f;
+        public static final int main_menu=0x7f070022;
+        public static final int maze_directions=0x7f070024;
+        public static final int options=0x7f07001e;
+        public static final int options_theme=0x7f070023;
+        /** settings for Data & Sync 
          */
-        public static final int pref_header_sync_data=0x7f07002d;
+        public static final int pref_header_sync_data=0x7f070028;
         /**  Strings related to Settings 
- Example General settings 
+ Theme settings 
          */
-        public static final int pref_header_theme=0x7f07002b;
-        public static final int pref_summary_sync_data=0x7f070030;
-        public static final int pref_switch_off=0x7f07002f;
-        public static final int pref_switch_on=0x7f07002e;
-        public static final int pref_title_choose_visual_theme=0x7f07002c;
-        public static final int solve=0x7f07001c;
-        public static final int start_game=0x7f070022;
-        public static final int submit=0x7f070025;
-        public static final int submit_dialog_score_pt1=0x7f070026;
-        public static final int title_activity_options=0x7f07002a;
-        public static final int youWin=0x7f07001e;
+        public static final int pref_header_theme=0x7f070026;
+        public static final int pref_summary_sync_data=0x7f07002b;
+        public static final int pref_switch_off=0x7f07002a;
+        public static final int pref_switch_on=0x7f070029;
+        public static final int pref_title_choose_visual_theme=0x7f070027;
+        public static final int start_game=0x7f07001d;
+        public static final int submit=0x7f070020;
+        public static final int submit_dialog_score_pt1=0x7f070021;
+        public static final int title_activity_options=0x7f070025;
     }
     public static final class style {
         /** 

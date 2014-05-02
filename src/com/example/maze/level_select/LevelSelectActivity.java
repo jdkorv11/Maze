@@ -9,15 +9,21 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.maze.MainActivity;
 import com.example.maze.R;
 import com.example.maze.ThemeDrawables;
 import com.example.maze.game_play.MazeActivity;
+import com.example.maze.high_scores.HighScoresActivity;
+import com.example.maze.options.OptionsActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,6 +50,28 @@ public class LevelSelectActivity extends Activity {
         setContentView(layout);
         fillLevels();
     }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_main:
+			startActivity(new Intent(this, MainActivity.class));
+			break;
+		case R.id.menu_high_scores:
+			startActivity(new Intent(this, HighScoresActivity.class));
+			break;
+		case R.id.menu_options:
+			startActivity(new Intent(this, OptionsActivity.class));
+			break;
+		}
+		return false;
+	}
 
     private void fillLevels() {
 

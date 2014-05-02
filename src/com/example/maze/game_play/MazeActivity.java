@@ -17,6 +17,7 @@ import android.text.format.Time;
 import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +34,7 @@ import com.example.maze.high_scores.HighScoresActivity;
 import com.example.maze.high_scores.MazeScore;
 import com.example.maze.high_scores.SessionHighScores;
 import com.example.maze.level_select.LevelSelectActivity;
+import com.example.maze.options.OptionsActivity;
 
 public class MazeActivity extends Activity {
 
@@ -136,6 +138,31 @@ public class MazeActivity extends Activity {
 
         displayMaze(ThemeDrawables.getGuySouth());
     }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menu_main:
+			startActivity(new Intent(this, MainActivity.class));
+			break;
+		case R.id.menu_level_select:
+			startActivity(new Intent(this, LevelSelectActivity.class));
+			break;
+		case R.id.menu_high_scores:
+			startActivity(new Intent(this, HighScoresActivity.class));
+			break;
+		case R.id.menu_options:
+			startActivity(new Intent(this, OptionsActivity.class));
+			break;
+		}
+		return false;
+	}
 
     private void completeLevel() {
         int score = calculateScore();
@@ -241,14 +268,6 @@ public class MazeActivity extends Activity {
                 });
         AlertDialog dialog = builder.create();
         dialog.show();
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     public void move(int direction) {
