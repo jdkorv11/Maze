@@ -71,14 +71,6 @@ public class HighScoresActivity extends Activity {
 		return false;
 	}
 
-    public void toMainMenu(View v) {
-        startActivity(new Intent(this, MainActivity.class));
-    }
-
-    public void toLevelSelect(View v) {
-        startActivity(new Intent(this, LevelSelectActivity.class));
-    }
-
     /**
      * Custom ArrayAdapter used to populate a ListView from a List of MazeScores
      *

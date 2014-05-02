@@ -23,28 +23,6 @@
             android:background="@drawable/industrial_wall"
             android:padding="@dimen/activity_horizontal_margin"/>
 
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/main_menu"
-            android:id="@+id/hsMainMenu"
-            android:layout_gravity="bottom|left"
-            android:background="@drawable/industrial_wall"
-            android:onClick="toMainMenu"
-            android:padding="6dp"
-            android:layout_margin="@dimen/activity_horizontal_margin"/>
-
-    <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/level_select"
-            android:id="@+id/hsLevelSelect"
-            android:layout_gravity="right|bottom"
-            android:background="@drawable/industrial_wall"
-            android:onClick="toLevelSelect"
-            android:padding="6dp"
-            android:layout_margin="@dimen/activity_horizontal_margin"/>
-
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

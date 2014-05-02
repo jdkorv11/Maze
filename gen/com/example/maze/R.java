@@ -247,30 +247,28 @@ containing a value of this type.
         public static final int retro_wall=0x7f020031;
     }
     public static final class id {
-        public static final int gridView=0x7f06000a;
+        public static final int gridView=0x7f060008;
         public static final int highScoresList=0x7f060007;
-        public static final int hsLevelSelect=0x7f060009;
-        public static final int hsMainMenu=0x7f060008;
         public static final int hslist_item_name=0x7f060005;
         public static final int hslist_item_score=0x7f060006;
         public static final int hybrid=0x7f060004;
-        public static final int level_select_item_level_number=0x7f06000c;
-        public static final int level_select_preview=0x7f06000b;
-        public static final int main_high_scores=0x7f06000d;
-        public static final int main_options=0x7f06000f;
-        public static final int main_start_game=0x7f06000e;
-        public static final int mazeHolder=0x7f060011;
-        public static final int maze_activity_directions=0x7f060010;
-        public static final int menu_high_scores=0x7f060017;
-        public static final int menu_level_select=0x7f060016;
-        public static final int menu_main=0x7f060015;
-        public static final int menu_options=0x7f060018;
+        public static final int level_select_item_level_number=0x7f06000a;
+        public static final int level_select_preview=0x7f060009;
+        public static final int main_high_scores=0x7f06000b;
+        public static final int main_options=0x7f06000d;
+        public static final int main_start_game=0x7f06000c;
+        public static final int mazeHolder=0x7f06000f;
+        public static final int maze_activity_directions=0x7f06000e;
+        public static final int menu_high_scores=0x7f060015;
+        public static final int menu_level_select=0x7f060014;
+        public static final int menu_main=0x7f060013;
+        public static final int menu_options=0x7f060016;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
         public static final int satellite=0x7f060002;
-        public static final int submit_dialog_player=0x7f060013;
-        public static final int submit_dialog_score=0x7f060012;
-        public static final int submit_score_button=0x7f060014;
+        public static final int submit_dialog_player=0x7f060011;
+        public static final int submit_dialog_score=0x7f060010;
+        public static final int submit_score_button=0x7f060012;
         public static final int terrain=0x7f060003;
     }
     public static final class integer {
