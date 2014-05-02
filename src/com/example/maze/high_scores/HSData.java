@@ -54,7 +54,7 @@ public class HSData {
 
 	}
 
-	private void internalSubmitScore(MazeScore score) {
+	public void internalSubmitScore(MazeScore score) {
 		highScores.add(score);
 		highScores = HighScoresComparer.getTop10Scores(highScores);
 	}

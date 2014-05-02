@@ -127,12 +127,11 @@ public class HSSyncer implements ConnectionCallbacks,
 					public void onResult(MetadataBufferResult result) {
 						Iterator<Metadata> iter = result.getMetadataBuffer()
 								.iterator();
-						
+
 						if (iter.hasNext()) {
 							DriveId id = iter.next().getDriveId();
 							driveFile = Drive.DriveApi.getFile(
 									mGoogleApiClient, id);
-							// TODO put switch for mode reading/writing
 							switch (mode) {
 							case HSSyncer.MODE_READ:
 								new RetrieveDriveFileContentsAsyncTask(activity)
@@ -269,11 +268,31 @@ public class HSSyncer implements ConnectionCallbacks,
 			if (result == null || result.length() == 0) {
 				return;
 			}
-			//TODO fill local scores with data
+			storeDownloadedScores(result);
 		}
 	}
 
 	public GoogleApiClient getGoogleApiClient() {
 		return mGoogleApiClient;
+	}
+
+	public void storeDownloadedScores(String JSONScores) {
+		HSData hsData = HSData.instance();
+		try {
+			JSONObject highScoresData = new JSONObject(JSONScores);
+			JSONArray scoresArr = highScoresData
+					.getJSONArray(DBContract.HighScores.TABLE);
+			for (int i = 0; i < scoresArr.length(); i++) {
+				JSONObject jsonScore = scoresArr.getJSONObject(i);
+				MazeScore score = new MazeScore(
+						jsonScore.getString(DBContract.HighScores.NAME),
+						jsonScore.getInt(DBContract.HighScores.SCORE));
+				hsData.internalSubmitScore(score);
+
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
 	}
 }
