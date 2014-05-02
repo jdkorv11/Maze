@@ -4,13 +4,17 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.android.gms.drive.DriveFile;
+
 import java.util.ArrayList;
 
 /**
  * Created by Owner on 4/24/14.
  */
-class HSSyncer {
+public class HSSyncer {
 
+	private static DriveFile driveFile;
+	
     public void submitScoresForSync(ArrayList<MazeScore> scores) {
         JSONObject jsonScoresList = buildJsonScoreList(scores);
     }
@@ -38,4 +42,13 @@ class HSSyncer {
 
         return jsonScores;
     }
+
+	public static DriveFile getDriveFile() {
+		return driveFile;
+	}
+
+	public static void setDriveFile(DriveFile driveFile) {
+		HSSyncer.driveFile = driveFile;
+	}
+	
 }

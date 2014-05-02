@@ -36,7 +36,8 @@ public class LevelSelectActivity extends Activity {
     private static int numOfLevels;
     private RelativeLayout layout;
 
-    public void onCreate(Bundle savedInstanceState) {
+    @Override
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         layout = (RelativeLayout) getLayoutInflater().inflate(R.layout.level_select, null);
         layout.setBackgroundResource(ThemeDrawables.getBackground());

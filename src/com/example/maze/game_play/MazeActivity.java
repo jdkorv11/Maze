@@ -180,7 +180,8 @@ public class MazeActivity extends Activity {
 
         Button button = (Button) dialog.findViewById(R.id.submit_score_button);
         button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+            @Override
+			public void onClick(View v) {
                 String player;
                 EditText et = ((EditText) dialog.findViewById(R.id.submit_dialog_player));
                 String enteredName = et.getText().toString();
@@ -202,7 +203,8 @@ public class MazeActivity extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Level Completed\nScore: " + score + " Total: " + totalScore)
                 .setItems(R.array.level_complete_options, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
+                    @Override
+					public void onClick(DialogInterface dialog, int which) {
                         // The 'which' argument contains the index position
                         // of the selected item
                         final int nextLevel = 0;

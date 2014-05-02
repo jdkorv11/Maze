@@ -30,7 +30,8 @@ public class HighScoresActivity extends Activity {
 
     private HSData hsData;
 
-    public void onCreate(Bundle savedInstanceState) {
+    @Override
+	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FrameLayout layout = (FrameLayout) getLayoutInflater().inflate(R.layout.high_scores, null);
         layout.setBackgroundResource(ThemeDrawables.getBackground());
