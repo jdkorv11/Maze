@@ -20,6 +20,7 @@ import com.example.maze.MainActivity;
 import com.example.maze.R;
 import com.example.maze.ThemeDrawables;
 import com.example.maze.high_scores.HSData;
+import com.example.maze.high_scores.HSSyncer;
 import com.example.maze.high_scores.HighScoresActivity;
 import com.example.maze.high_scores.MazeScore;
 import com.example.maze.high_scores.SessionHighScores;
