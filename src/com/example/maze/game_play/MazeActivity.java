@@ -1,5 +1,8 @@
 package com.example.maze.game_play;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -15,19 +18,21 @@ import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import com.example.maze.MainActivity;
 import com.example.maze.R;
 import com.example.maze.ThemeDrawables;
 import com.example.maze.high_scores.HSData;
-import com.example.maze.high_scores.HSSyncer;
 import com.example.maze.high_scores.HighScoresActivity;
 import com.example.maze.high_scores.MazeScore;
 import com.example.maze.high_scores.SessionHighScores;
 import com.example.maze.level_select.LevelSelectActivity;
-
-import java.io.IOException;
-import java.io.InputStream;
 
 public class MazeActivity extends Activity {
 

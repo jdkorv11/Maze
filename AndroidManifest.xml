@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="16"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="19" />
     
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -43,10 +43,12 @@
         </activity>
         <activity
             android:name="com.example.maze.high_scores.HighScoresActivity"
-            android:label="High Scores" />
+            android:label="High Scores"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.example.maze.options.OptionsActivity"
-            android:label="@string/title_activity_options" >
+            android:label="@string/title_activity_options"
+            android:screenOrientation="portrait" >
         </activity>
 
     </application>

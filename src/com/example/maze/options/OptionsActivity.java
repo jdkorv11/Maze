@@ -23,13 +23,6 @@ import java.util.List;
  * API Guide</a> for more information on developing a Settings UI.
  */
 public class OptionsActivity extends PreferenceActivity {
-    /**
-     * Determines whether to always show the simplified settings UI, where
-     * settings are presented in a single list. When false, settings are shown
-     * as a master/detail two-pane view on tablets. When true, a single pane is
-     * shown on tablets.
-     */
-    private static final boolean ALWAYS_SIMPLE_PREFS = false;
     public static final String THEME_PREF_KEY = "pref_theme_list";
     public static final String SYNC_PREF_KEY = "pref_sync_switch";
 
@@ -165,7 +158,7 @@ public class OptionsActivity extends PreferenceActivity {
             sBindPreferenceSummaryToValueListener.onPreferenceChange(
                     preference,
                     PreferenceManager.getDefaultSharedPreferences(
-                            preference.getContext()).getBoolean(preference.getKey(), true));
+                            preference.getContext()).getBoolean(preference.getKey(), false));
 
         } else {
             sBindPreferenceSummaryToValueListener.onPreferenceChange(

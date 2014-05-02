@@ -41,7 +41,6 @@ public class MainActivity extends Activity {
 
 		if (MainActivity.prefs.getBoolean(OptionsActivity.SYNC_PREF_KEY, false) &&
 				!AppInstanceData.isSyncDownloaded()) {
-			//TODO make pull scores
             syncer = new HSSyncer(this);
             syncer.pullScores();
         }
