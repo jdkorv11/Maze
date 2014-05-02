@@ -17,6 +17,7 @@ import android.content.IntentSender;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.maze.AppInstanceData;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -288,7 +289,7 @@ public class HSSyncer implements ConnectionCallbacks,
 						jsonScore.getString(DBContract.HighScores.NAME),
 						jsonScore.getInt(DBContract.HighScores.SCORE));
 				hsData.internalSubmitScore(score);
-
+				AppInstanceData.setSyncDownloaded(true);
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

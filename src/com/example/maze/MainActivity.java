@@ -39,7 +39,8 @@ public class MainActivity extends Activity {
 		layout.setBackgroundResource(ThemeDrawables.getBackground());
 		setContentView(layout);
 
-		if (MainActivity.prefs.getBoolean(OptionsActivity.SYNC_PREF_KEY, false)) {
+		if (MainActivity.prefs.getBoolean(OptionsActivity.SYNC_PREF_KEY, false) &&
+				!AppInstanceData.isSyncDownloaded()) {
 			//TODO make pull scores
             syncer = new HSSyncer(this);
             syncer.pullScores();

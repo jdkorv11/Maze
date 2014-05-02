@@ -317,7 +317,7 @@ public class MazeActivity extends Activity {
         int dispWidth = size.x;
         mazeDisplay.setColumnCount(maze.getWidth());
         mazeDisplay.setRowCount(maze.getHeight());
-        int imageSize = (dispWidth - 20) / maze.getWidth();
+        int imageSize = (dispWidth - 80) / maze.getWidth();
 
         finishImg = BitmapFactory.decodeResource(getResources(), ThemeDrawables.getFinish());
         finishImg = Bitmap.createScaledBitmap(finishImg, imageSize, imageSize, true);
